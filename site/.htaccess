@@ -1,0 +1,40 @@
+# .htaccess — Hardening del sitio web (aplica en Apache)
+#
+# Medidas de seguridad implementadas:
+#   - Cabeceras de seguridad (Content-Security-Policy, X-Frame-Options, etc.)
+#   - Sin listado de directorios (Options -Indexes)
+#   - Bloqueo de archivos sensibles: config.php, headers.php, seguridad.php,
+#     funciones internas, archivos de entorno/credenciales.
+#   - RewriteEngine Off? no: activado para la raíz del sitio.
+
+<IfModule mod_headers.c>
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none';"
+    Header always set X-Frame-Options "DENY"
+    Header always set X-Content-Type-Options "nosniff"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+    Header always set Cache-Control "no-store, no-cache, must-revalidate, max-age=0, private"
+    Header always set X-XSS-Protection "0"
+</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Sin listing de directorios
+    Options -Indexes -ExecCGI +FollowSymLinks
+
+    # Archivos sensibles: nadie accede a ellos directamente por URL
+    <FilesMatch "(^\\.|config\\.php|headers\\.php|seguridad\\.php|login_post\\.php|\\.env|\\.gitignore)">
+        Order Deny,Allow
+        Deny from All
+    </FilesMatch>
+
+    # Que solo sirva el archivo de índice del document root
+    DirectoryIndex index.php
+</IfModule>
+
+# Sin ejecución de archivos no validos
+<IfModule mod_php_*.c>
+    php_admin_flag engine on
+    php_admin_flag display_errors off
+</IfModule>

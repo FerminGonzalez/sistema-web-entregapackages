@@ -1,0 +1,136 @@
+/* Sistema Web Entrega de Paquetes — estilos mínimos y limpios.
+ * (CSS externo bajo 'self' — permite strict CSP sin unsafe-inline.) */
+
+:root {
+    --bg: #f4f5f7;
+    --card: #ffffff;
+    --ink: #1c2733;
+    --muted: #6b7280;
+    --accent: #1668af;
+    --accent-dark: #0e4d84;
+    --line: #e5e7eb;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.5;
+    font-size: 15px;
+}
+
+.page {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px 16px 48px;
+}
+
+.app-header h1 { margin: 0 0 8px; font-size: 1.8rem; }
+.app-header small { display: block; color: var(--muted); font-weight: 400; }
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 18px 0;
+}
+
+.card h2 { margin: 0 0 12px; font-size: 1.3rem; }
+
+.muted { color: var(--muted); }
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+table.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+table.table th, table.table td {
+    border: 1px solid var(--line);
+    padding: 6px 8px;
+    text-align: left;
+    font-size: 13px;
+    overflow-wrap: anywhere;
+}
+table.table th {
+    background: #f0f2f6;
+    font-weight: 600;
+}
+table.table thead th { white-space: nowrap; }
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 460px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.field span { font-size: 13px; font-weight: 600; color: var(--ink); }
+.field input, .field select {
+    padding: 7px 9px;
+    font-size: 14px;
+    border: 1px solid #c9cdd3;
+    border-radius: 6px;
+    background: #fff;
+    max-width: 100%;
+    min-height: 34px;
+}
+.field input:focus, .field select:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(22, 104, 175, 0.12);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 1px solid var(--line);
+    background: #fff;
+    color: var(--ink);
+    text-decoration: none;
+    min-height: 34px;
+}
+.btn-primary { background: var(--accent); border-color: var(--accent-dark); color: #fff; }
+.btn-primary:hover { background: var(--accent-dark); }
+.btn-danger { background: #b3261e; border-color: #8c201a; color: #fff; }
+.btn-danger:hover { background: #8b1c16; }
+
+.alert { border-radius: 6px; padding: 10px 12px; margin: 12px 0; font-size: 14px; }
+.alert-error { background: #fdeceb; color: #8a1c13; border: 1px solid #f5c6c2; }
+
+.hint {
+    border: 1px dashed #c9cdd3;
+    border-radius: 6px;
+    padding: 10px 12px;
+    background: #fbfcfe;
+    font-size: 13.5px;
+    color: var(--muted);
+}
+
+.modules { padding-left: 18px; margin: 8px 0 0; }
+.modules > li { margin-bottom: 10px; }
+.modules > li > ul { padding-left: 18px; margin: 4px 0 0; }
+
+.page-footer { padding-top: 12px; }
+.page-footer a { font-weight: 600; }
